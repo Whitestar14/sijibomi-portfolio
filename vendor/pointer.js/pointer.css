@@ -1,0 +1,46 @@
+/* *
+ * This CSS file was created by OwL for use by pointer.js, modified by Whitestar Studios
+ *      which can be found on https://seattleowl.com.
+ *
+ * @format
+ */
+
+html,
+body,
+a, iframe, * {
+  cursor: none !important;
+}
+
+.ptContainer {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pointer-ring {
+  width: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30px;
+  border: 3px solid var(--secondary-color, #e52);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 102;
+  transition: border 0.5s, transform 800ms;
+}
+
+#pointer-dot {
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  position: fixed;
+  background-color: var(--white, #e52);
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 101;
+}
