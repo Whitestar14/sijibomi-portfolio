@@ -13,6 +13,12 @@
   font-family: "Mona-Sans";
   src: url(./fonts/Mona-Sans.woff2);
 }
+
+@font-face {
+  font-family: "Rubik";
+  src: url(./fonts/Rubik-VariableFont_wght.ttf);
+}
+
 :root {
   --bg-color: #feffed;
   --bg-c-color: #974f2e;
@@ -63,7 +69,7 @@ html {
   background-color: var(--bg-color);
   position: relative;
   color: var(--white);
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   overflow-x: hidden;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -83,6 +89,10 @@ p {
 button,
 a {
   cursor: pointer;
+}
+
+a {
+  color: inherit;
 }
 
 svg {
@@ -420,6 +430,16 @@ svg {
   cursor: pointer;
   color: var(--black);
   background-color: var(--bg-c-color);
+  padding: 0;
+}
+
+.section .panel-banner .social-links .social-link a {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .section .panel-banner .social-links .social-link:hover {
@@ -2510,7 +2530,7 @@ svg {
 
 .footer-banner-links > a:hover {
   color: var(--secondary-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 @media (max-width: 900px) {

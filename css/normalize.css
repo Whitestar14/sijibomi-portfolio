@@ -90,3 +90,8 @@ img {
   width: 100%;
   overflow: hidden;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

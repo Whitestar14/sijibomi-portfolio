@@ -6,15 +6,26 @@
  *
  */
 
+// Add this check at the start of the file, right after the elementInit()
+const isTouchDevice = () => {
+  return (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0));
+};
+
 const { pointer, ring, ptContainer } = elementInit();
-pointer.id = "pointer-dot";
-ring.id = "pointer-ring";
 
-ptContainer.classList.add("ptContainer");
-
-ptContainer.appendChild(pointer);
-ptContainer.appendChild(ring);
-document.body.insertBefore(ptContainer, document.body.children[0]);
+// Only initialize the custom cursor if it's not a touch device
+if (!isTouchDevice()) {
+  pointer.id = "pointer-dot";
+  ring.id = "pointer-ring";
+  
+  ptContainer.classList.add("ptContainer");
+  
+  ptContainer.appendChild(pointer);
+  ptContainer.appendChild(ring);
+  document.body.insertBefore(ptContainer, document.body.children[0]);
+}
 
 let mouseX = -100;
 let mouseY = -100;
