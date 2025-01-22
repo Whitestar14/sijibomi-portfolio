@@ -1,5 +1,18 @@
 /** @format */
+@font-face {
+  font-family: "Autumn in November";
+  src: url(./fonts/Autumn\ in\ November.ttf);
+}
 
+@font-face {
+  font-family: "Product Sans";
+  src: url(./fonts/Product\ Sans\ Bold.ttf);
+}
+
+@font-face {
+  font-family: "Mona-Sans";
+  src: url(./fonts/Mona-Sans.woff2);
+}
 :root {
   --bg-color: #feffed;
   --bg-c-color: #974f2e;
