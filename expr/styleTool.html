@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StyleTool Example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <style>
+      /* Headline styling */
+      .headline {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 20px;
+      }
+
+      /* Dynamic text styling */
+      #dynamic-text {
+        font-weight: bold;
+      }
+
+      /* Keyframes for fade-in, fade-out with blur */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          filter: blur(10px);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          filter: blur(0);
+        }
+        100% {
+          opacity: 0;
+          filter: blur(10px);
+        }
+      }
+
+      /* Animation classes */
+      .fade-in {
+        animation: fadeIn 1s forwards;
+      }
+
+      .fade-out {
+        animation: fadeOut 1s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="headline">
+      <h1>
+        I'm the man for the job because I'm a <span id="dynamic-text"></span>
+      </h1>
+    </div>
+    <script>
+        // Array of words to cycle through
+const words = ["programmer.", "artist.", "designer.", "developer.", "writer."];
+
+// Colors corresponding to each word
+const colors = ["#ff6347", "#4682b4", "#32cd32", "#ff4500", "#800080"];
+
+// Index to keep track of the current word
+let currentWordIndex = 0;
+
+// Reference to the dynamic text element
+const dynamicText = document.getElementById("dynamic-text");
+
+// Function to handle the text cycling with fade and blur effects
+function cycleText() {
+  // Apply fade-out animation
+  dynamicText.classList.remove("fade-in");
+  dynamicText.classList.add("fade-out");
+
+  // After fade-out completes, change the word and apply a new color
+  setTimeout(() => {
+    currentWordIndex = (currentWordIndex + 1) % words.length;
+
+    // Update the text and apply the corresponding color
+    dynamicText.textContent = words[currentWordIndex];
+    dynamicText.style.color = colors[currentWordIndex];
+
+    // Apply fade-in animation
+    dynamicText.classList.remove("fade-out");
+    dynamicText.classList.add("fade-in");
+  }, 1000); // Matches fade-out duration (1s)
+}
+
+// Initialize the first word and start cycling every few seconds
+dynamicText.textContent = words[currentWordIndex];
+dynamicText.style.color = colors[currentWordIndex];
+dynamicText.classList.add("fade-in");
+setInterval(cycleText, 3000); // Cycle every 3 seconds
+
+    </script>
+  </body>
+</html>

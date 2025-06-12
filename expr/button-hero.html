@@ -1,0 +1,89 @@
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    margin: 2rem;
+  }
+
+  button > span {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2rem;
+  }
+
+  button span:nth-child(1) {
+    padding: 30px 40px;
+  }
+
+  button span:nth-child(2) {
+    padding: 30px 20px;
+  }
+
+  button span:nth-child(3) {
+    padding: 0px 5px;
+    background-color: #000;
+  }
+
+  button span > span {
+    rotate: 90deg;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  button span.effect:nth-child(1) {
+    border-radius: 0;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
+
+  button span.effect:nth-child(2) {
+    padding: 30px 0px;
+    border-radius: 0;
+  }
+
+  button span.effect:nth-child(3) {
+    border-radius: 0;
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+  }
+
+  button span.effect > span {
+    transition: all 0.3s ease;
+    rotate: 0deg;
+  }
+</style>
+<button class="btn">
+  <span class="span">Get</span><span class="span">in</span
+  ><span class="span">
+    <span>Touch</span>
+  </span>
+</button>
+
+<script>
+  const btn = document.querySelector(".btn");
+  const spans = btn.querySelectorAll(".span");
+
+  btn.onmouseover = () => {
+    Array.from(spans).forEach((span, index) => {
+      span.classList.add("effect");
+    });
+    console.log(spans);
+  };
+
+  btn.onmouseout = () => {
+    Array.from(spans).forEach((span, index) => {
+      span.classList.remove("effect");
+    });
+    console.log(spans);
+  };
+</script>

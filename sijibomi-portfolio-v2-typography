@@ -1,0 +1,18 @@
+styles ===
+font-feature-settings = unset;
+letter-spacing (mona Sans) = -0.03em; // @media 768px
+letter-spacing (mona Sans) = -0.01em; // @media 1200px
+font-feature-settings: unset;
+word-wrap: break-word;
+word-break: keep-all;
+font-weight = 800;
+
+
+line height = 60px | 3.75em
+margin-bottom = 16px | 1em
+margin-lg-bottom = 64px | 4em
+margin-md-bottom = 40px | 2.5em
+padding = 24px | 1.5em
+border-radius = 0.375em
+
+ 

@@ -1,0 +1,371 @@
+@charset "UTF-8";
+/*!
+ * @author: Olusunmbola 'O.S David' Oluwasijbomi
+ * Copyright 2024 
+ * @message: This stylesheet consititutes heavily off some bootstrap methods and styles to ensure type consistency. Variales with the -r prefix are raw values that can be passed into rgb arguments. This convention was preferred because of the ease to manupilate it with the alpha channel and preserving its variable properties.
+ */
+
+/* For typography and implicit styles for generic selectors */
+@import url(../css/typography.css);
+
+:root,
+[data-ws-theme="dark"] {
+  --bg-color: 41 30 65;
+  --bg-color-muted: 176 173 254 / 5%;
+  --primary-color: 63 81 181;
+  --secondary-color: 162 219 250;
+  --tertiary-color: 16 5 36;
+  --accent-color: 254 252 173;
+  --accent-color-muted: 161 135 247;
+  --accent-color-deepened: 37 13 3;
+
+  /* --bg-color: 20, 20, 20; */
+  --card-content-color: 23 23 23;
+  --card-bg-color: 255 255 255 0.1;
+  --gaussian-blur-card: 255 255 255 0.06;
+  --gaussian-border-card: 255 255 255 0.4;
+  --text-color: 240 240 240;
+  --text-color-muted: 255 255 255 0.5;
+
+  --border-card: 255, 255, 255, 0.1;
+
+  --text-primary-brand-color: 224, 94, 34;
+  --text-secondary-brand-color: 255, 249, 237;
+
+  --primary-brand-font: "Mona-Sans", "Forma DJR Variable", sans-serif;
+  --secondary-brand-font: "Product sans", sans-serif;
+  --tertiary-brand-font: "Autumn in November", cursive, sans-serif;
+  --monospace-font: "Reddit Mono", monospace;
+
+  --font-size-large: 2.5rem;
+  --font-size-min: 1.5rem;
+  --font-size-normal: 1.25rem;
+  --font-size-small: 1rem;
+  --font-size-xsmall: 0.85rem;
+  --border-radius-card: 0.85em;
+  --border-radius-button: 0.25em;
+  --gap-flex: 1rem;
+  --gap-flex-sm: 0.75rem;
+  --gap-flex-large: 2rem;
+  --gap-gutter: 0.5em;
+  --gap-gutter-large: 3rem;
+  --text-icon-font-size: 1rem;
+
+  --bezier-curve-smooth: cubic-bezier(0.79, 0.47, 0.25, 1.17);
+  --neomorphic-box-shadow: 0px 0px 2px 2px rgb(181 149 213 / 30%);
+  --navbar-dark-bg: rgba(17, 17, 17, 0.9);
+}
+
+/* Notes: (1) I used a background color for an anchor selector on ln 137. Either change the color to a text selector or create a variable with the text attribute that shares same properties.  */
+
+/* Header Section Styles */
+body > .header {
+  width: 100%;
+  height: 5.5em;
+  /** 95vh in compact mode, 90 in floating mode. */
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(var(--border-card));
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+body > .header > .header-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+body > .header > .header-container .header-section {
+  padding: 2rem 1rem;
+  display: flex;
+  gap: var(--gap-flex);
+  align-items: center;
+  justify-content: center;
+  max-height: 5.5rem;
+}
+
+body > .header > .header-container .header-logo {
+  justify-content: flex-start;
+  font-size: var(--font-size-large);
+  font-family: var(--tertiary-brand-font);
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+body > .header > .header-container .header-logo .header-text:hover {
+  opacity: 0.5;
+}
+
+body > .header > .header-container .navbar-section {
+  display: flex;
+}
+
+body > .header .navbar-section .header-block {
+  gap: var(--gap-flex-large);
+}
+
+body > .header .navbar-section .header-menu {
+  gap: var(--gap-flex-large);
+}
+
+body > .header .navbar-section .header-menu,
+body > .header .navbar-section .header-menu .header-block,
+body > .header .navbar-section .header-menu .header-block .menu-block {
+  display: inline-flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: row;
+}
+
+body > .header .navbar-section .header-menu .header-block a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-flex-sm);
+  border: 1px solid;
+  font-family: var(--monospace-font);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 400ms ease, color 200ms ease-in;
+  color: rgb(var(--text-primary-brand-color));
+  border-radius: var(--border-radius-button);
+}
+
+.header .navbar-section .header-menu .header-block a:hover {
+  background-color: rgb(var(--text-primary-brand-color));
+  color: rgb(var(--bg-color));
+}
+
+.header .navbar-section .header-menu .header-block.menu {
+  gap: var(--gap-flex);
+  display: flex;
+}
+
+.header .navbar-section .header-menu .header-block .menu-block {
+  gap: calc(0.2em + 0.5vw);
+  transition: color 400ms ease-in;
+  cursor: pointer;
+}
+
+.header .navbar-section .header-menu .header-block .menu-block:hover {
+  color: rgb(var(--accent-color-muted));
+}
+
+.header .navbar-section .header-menu .header-block .menu-block .menu-icon {
+  font-size: var(--font-size-small);
+}
+
+.header-logo,
+.navbar-section {
+  flex-basis: calc(100% / 2.25);
+}
+
+.header > .header-container .navbar-section .menu-trigger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.header > .header-container .navbar-section .menu-trigger .menu-bar {
+  width: 25px;
+  height: 2px;
+  background-color: rgb(var(--text-secondary-brand-color));
+  transition: 0.4s;
+}
+
+.header .header-container .header-theme-toggle {
+  flex-grow: 1;
+  font-size: var(--font-size-normal);
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 400ms var(--bezier-curve-smooth);
+}
+
+.header .header-container .header-theme-toggle:hover {
+  transform: scale(1.15);
+  color: rgb(var(--accent-color));
+}
+
+body > .header.navbar-float {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  border-bottom: none;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: var(--border-radius-card);
+  background: rgb(var(--bg-color-muted));
+  border: 1px solid rgb(var(--border-card));
+  padding: 10px 20px;
+  filter: blur(-1px);
+  transition: background-color 0.3s ease, padding 0.3s ease, width 0.3s ease,
+    height 0.3s ease, transform 0.3s ease-in, filter 0.3s ease-in;
+}
+
+body > .header.navbar-float.navbar-hide {
+  transform: translateY(-150%);
+  filter: blur(5px);
+  transition: filter 0.3 ease-in;
+}
+
+/* Navigation Responsiveness for mobile screens */
+
+@media (max-width: 640px) {
+  /* Nabvar and nav-float styles */
+  body > .header > .header-container .navbar-section {
+    justify-content: flex-end;
+    flex-basis: 20%;
+  }
+
+  .header > .header-container .navbar-section .header-menu {
+    position: relative;
+    transform: scale(0);
+    opacity: 0;
+    transition: opacity 800ms ease, scale 800ms ease;
+    transition-delay: 500ms;
+    position: absolute;
+    top: 13.5%;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 4em;
+    justify-content: space-around;
+    left: 0;
+    transition-behavior: allow-discrete;
+  }
+
+  /* Here, there are two configurations for the header and menu dynamic. At YOffset = 0, the menu is maximally expanded and is shrunk to 90% on YOffset > 80. */
+  .header .header-container .navbar-section .header-menu.active {
+    display: grid;
+    opacity: 1;
+    border-top: 1px solid rgb(var(--border-card));
+    transform: scale(1);
+    justify-content: space-around;
+  }
+
+  .header .navbar-section .header-menu .header-block.menu {
+    flex-direction: column;
+    align-self: self-start;
+    justify-self: end;
+    font-size: var(--font-size-min);
+    font-family: var(--monospace-font);
+    width: 150%;
+    color: rgb(var(--text-secondary-brand-color), 0.75);
+    line-height: 0.8;
+    gap: var(--gap-gutter-large);
+    font-size-adjust: from-font;
+  }
+
+  .header .navbar-section .header-menu .header-block.menu .menu-block {
+    gap: 0.5em;
+    font-variant: all-small-caps;
+    position: relative;
+  }
+
+  .header .navbar-section .header-menu .header-block.menu .menu-block::before {
+    content: "";
+    width: 100%;
+    height: 5px;
+    bottom: -10px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 400ms var(--bezier-curve-smooth);
+    position: absolute;
+    background: linear-gradient(
+      transparent 40%,
+      mediumslateblue 80%,
+      transparent 160%
+    );
+    will-change: transform;
+  }
+
+  .header
+    .navbar-section
+    .header-menu
+    .header-block.menu
+    .menu-block:hover::before {
+    transform: scaleX(1);
+  }
+
+  .header .navbar-section .header-menu .header-block.menu .menu-icon {
+    font-size: var(--font-size-min);
+  }
+
+  .header .navbar-section .header-menu .header-block:nth-child(2) {
+    font-size: var(--font-size-small);
+  }
+
+  /* Using the CSS :has property to control the menus and the header-block */
+  body:has(.header-menu.active) > .header.navbar-float {
+    height: 90vh !important;
+  }
+
+  body:has(.header-menu.active) .header {
+    height: 95vh !important;
+  }
+
+  body:has(.header.navbar-float) .header .header-menu.active {
+    top: 17%;
+  }
+
+  /* Menu bar styles */
+  .header > .header-container .navbar-section .menu-trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    gap: 6px;
+    border-radius: var(--border-radius-button);
+    padding: 10px 5px;
+  }
+
+  .header > .header-container .navbar-section .menu-trigger:hover {
+    background-color: rgb(var(--text-secondary-brand-color), 0.05);
+  }
+
+  .header
+    > .header-container
+    .navbar-section
+    .menu-trigger.active
+    .menu-bar:nth-child(1) {
+    transform: translateY(4px) rotate(-45deg);
+  }
+
+  .header
+    > .header-container
+    .navbar-section
+    .menu-trigger.active
+    .menu-bar:nth-child(2) {
+    transform: translateY(-4px) rotate(45deg);
+  }
+
+  /* Header styles when float is active */
+  body .header > .header-container .header-logo {
+    flex-basis: 70%;
+  }
+
+  /* Ok, I know I resoluted to making my animations as available and enjoyable 
+    as possible on all devices, but c'mon. This style rule is necessary because the 
+    translateY animation effect on the logo appears to 'overlap' the border-top of 
+    the absolutely positioned header-menu on taller screens */
+  @media (max-height: 540px) {
+    body .header > .header-container .header-logo,
+    body .header > .header-container .navbar-section,
+    body .header > .header-container .header-theme-toggle {
+      max-height: 4.5rem;
+    }
+  }
+
+  /* Other header styles */
+  .header .header-container .header-theme-toggle {
+    font-size: var(--font-size-min);
+  }
+}

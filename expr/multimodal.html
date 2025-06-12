@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intersection Observer</title>
+    <style>
+      :root {
+        --bg-color: rgb(41 30 65);
+        --color: #fff;
+        --special-color: rgb(224, 94, 34);
+        font-size: 16px;
+      }
+
+      @media(max-width: 400px) {
+        body {
+          font-size: 2px;
+        }
+      }
+
+      /* Sijibomi noir... */
+      body {
+        font-family: Code;
+        font-size: 3rem;
+        background: var(--bg-color);
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        overflow: hidden;
+        /* filter: sepia() !important; */
+      }
+
+      .footer-text-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+        position: relative;
+        opacity: 1;
+        background-color: var(--bg-color);
+        width: 100vw;
+        height: 60px;
+      }
+
+/*      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }*/
+
+      .footer-text {
+        /* font-size: 3rem; */
+        color: var(--color);
+        font-feature-settings: unset;
+        font-stretch: narrower;
+        text-rendering: optimizeLegibility;
+        font-weight: 800;
+        filter: blur(5px);
+        opacity: 0;
+      }
+
+      .footer-text::after {
+        content: "●";
+        font-size: 2rem;
+      }
+
+      .footer-text.appear {
+        opacity: 1;
+        filter: blur(0px);
+      }
+
+      .footer {
+        max-height: 80vh;
+      }
+
+      #sijibomi {
+        font-family: "Qerginas Frenchstyle serif";
+        font-weight: 300;
+        /* top: -5px; */
+        font-size: 3rem;
+        font-size-adjust: from-font;
+        position: relative;
+        color: rgb(224, 24, 94);
+      }
+
+      #sijibomilarger {
+        font-size: 250px;
+        opacity: 0.5;
+        color: var(--color);
+        position: absolute;
+        font-weight: 600;
+        font-family: "Qerginas Frenchstyle serif";
+      }
+
+    </style>
+  </head>
+  <!-- // #d6d692 -->
+  <body class="body">
+    <!-- HTML -->
+    <div id="sijibomilarger">Síjibòmí</div>
+    <footer class="footer">
+      <div class="footer-text-container">
+        <div class="container">
+          <span class="footer-text" id="stunning">Beauty</span>
+          <span class="footer-text" id="stylish">in</span>
+          <span class="footer-text" id="sijibomi">Contrast</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- •⁘º⁍◌●◉
+.•⁘º⁍◇◌●◉
+.•⁘º⁍◇◌●◉ -->
+
+    <script src="./vendor/anime.min.js"></script>
+    <script>
+      // JavaScript (using Intersection Observer and Anime.js)
+      document.addEventListener("DOMContentLoaded", () => {
+        const footerTexts = document.querySelectorAll(".footer-text");
+        const footer = document.querySelector(".footer");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Apply the staggered animation using anime.js
+                let timeline = anime
+                  .timeline({
+                    easing: "easeOutExpo",
+                    duration: 800,
+                  })
+                  .add({
+                    targets: ".footer-text-container",
+                    height: { value: [10, 60], duration: 500 },
+                    delay: 800,
+                  })
+                  .add({
+                    targets: "#stunning",
+                    delay: 200,
+                    // translateY: function () {
+                    //   return anime.random(-100, 100);
+                    // },
+                    // translateX: function () {
+                    //   return anime.random(-200, 200);
+                    // },
+                    // rotate: function () {
+                    //   return anime.random(-50, 50);
+                    // },
+                    filter: ["blur(5px)", "blur(0px)"],
+                    opacity: [0, 1],
+                    complete: function () {
+                      // Add class to make sure opacity stays after animation
+                      footerTexts[0].classList.add("appear");
+                    },
+                  })
+                  .add({
+                    targets: "#stylish",
+                    delay: 400,
+                    // translateY: function () {
+                    //   return anime.random(-100, 100);
+                    // },
+                    // translateX: function () {
+                    //   return anime.random(50, 200);
+                    // },
+                    // rotate: function () {
+                    //   return anime.random(-50, 50);
+                    // },
+                    filter: ["blur(5px)", "blur(0px)"],
+                    opacity: [0, 1],
+                    complete: function () {
+                      // Add class to make sure opacity stays after animation
+                      footerTexts[1].classList.add("appear");
+                    },
+                  })
+                  .add({
+                    targets: "#sijibomi",
+                    // delay: 600,
+                    // translateX: function () {
+                    //   return anime.random(150, 300);
+                    // },
+                    // translateY: function () {
+                    //   return anime.random(-100, 100);
+                    // },
+                    // rotate: function () {
+                    //   return anime.random(-50, 50);
+                    // },
+                    filter: ["blur(5px)", "blur(0px)"],
+                    opacity: [0, 1],
+                    complete: function () {
+                      // Add class to make sure opacity stays after animation
+                      footerTexts[2].classList.add("appear");
+                    },
+                  })
+                  .add({
+                    targets: "#sijibomi, #stunning, #stylish",
+                    delay: 800,
+                    rotate: 0,
+                    translateX: 0,
+                    translateY: 0,
+                  })
+                  .add({
+                    targets: "#sijibomilarger",
+                    fontSize: 3000,
+                  })
+                  .add({
+                    targets: "#sijibomi, #stunning, #stylish",
+                    scale: 1.2,
+                  })
+                  .add({
+                    targets: "#sijibomi, #stunning, #stylish",
+                    filter: ["blur(0px)", "blur(5px)"],
+                    opacity: [1, 0],
+                  })
+                  .add({
+                    targets: ".footer-text-container",
+                    height: { value: [60, 10], duration: 500 },
+                  })
+                  .add(
+                    {
+                      targets: "#sijibomilarger",
+                      fontSize: 250,
+                      opacity: { value: 1, duration: 200 },
+                      color: "rgb(224, 24, 94)",
+                    },
+                    "-=500"
+                  );
+
+                observer.disconnect(); // Stop observing after animation is triggered
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px",
+            root: null,
+          }
+        );
+
+        observer.observe(footer); // Start observing the footer
+      });
+    </script>
+  </body>
+</html>
+
+<!-- #f7f77a -->
